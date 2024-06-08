@@ -2,20 +2,20 @@ import Container from '../nav/Container'
 import styles from './Home.module.css'
 import img from '../../img/savings.svg'
 import DefaultButton from '../Buttons/DefaultButton'
+import { useState } from 'react'
+import AdicionarConta from './AdcionarConta'
+import PlanoDeContas from './PlanodeContas'
 
 
 function Home(props) {
+        const [contas, setContas] = useState([]);
 
     return(
         <Container>
-            <h1 className={styles.titleContainer}>Bem vindo ao Costs</h1>
             
-                <p>
-                    Comece a gerenciar seus projetos agora mesmo
-                </p>
-            <DefaultButton to='./NewProject' text='Criar Projeto' key={'create_project'} /> 
-             
-            <img src={img} alt='Costs' height="30%" width="30%"></img>
+            <h1>Plano de Contas</h1>
+            
+            <PlanoDeContas contas={contas} />
 
         </Container>
     )

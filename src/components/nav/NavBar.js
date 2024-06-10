@@ -25,7 +25,7 @@ function NavBar() {
                         <Link to='/empresa' className={styles.navLink} key={'empresa'}>Empresa</Link>
                     </li>
                     <li>
-                        <Link to='/contato' className={styles.navLink} key={'contato'}>Contato</Link>
+                        <Link to='/contato' className={styles.navLink} key={'contato'}>Referências</Link>
                     </li>
                 </div>
             </ul>

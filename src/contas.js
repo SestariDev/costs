@@ -1,5 +1,4 @@
-{
-  "contas": [
+export const contas =  [
     {
       "id": 1,
       "codigo": "1",
@@ -20,7 +19,7 @@
               "subcontas": [
                 {
                   "id": 4,
-                  "codigo": "1.1.1.1",
+                  "codigo": "1.1.1.01",
                   "nome": "Caixa",
                   "categoria": "A",
                   "valor": 50000
@@ -33,7 +32,7 @@
                   "subcontas": [
                     {
                       "id": 6,
-                      "codigo": "1.1.1.2.1",
+                      "codigo": "1.1.1.2.01",
                       "nome": "Curto Prazo",
                       "categoria": "A",
                       "valor": 245000
@@ -62,7 +61,7 @@
                       "subcontas": [
                         {
                           "id": 10,
-                          "codigo": "1.1.2.1.1.1",
+                          "codigo": "1.1.2.1.1.01",
                           "nome": "Empresa Alpha",
                           "categoria": "A",
                           "valor": 40000
@@ -84,7 +83,7 @@
                       "subcontas": [
                         {
                           "id": 13,
-                          "codigo": "1.1.2.1.2.1",
+                          "codigo": "1.1.2.1.2.01",
                           "nome": "Innovatech",
                           "categoria": "A",
                           "valor": 50000
@@ -107,14 +106,14 @@
                       "subcontas": [
                         {
                           "id": 16,
-                          "codigo": "1.1.2.2.1.1",
+                          "codigo": "1.1.2.2.1.01",
                           "nome": "Global Tech Inc.",
                           "categoria": "A",
                           "valor": 30000
                         },
                         {
                           "id": 17,
-                          "codigo": "1.1.2.2.1.2",
+                          "codigo": "1.1.2.2.1.02",
                           "nome": "Silicon Valley Solutions",
                           "categoria": "A",
                           "valor": 20000
@@ -129,14 +128,14 @@
                       "subcontas": [
                         {
                           "id": 19,
-                          "codigo": "1.1.2.2.2.1",
+                          "codigo": "1.1.2.2.2.01",
                           "nome": "EuroTech",
                           "categoria": "A",
                           "valor": 50000
                         },
                         {
                           "id": 20,
-                          "codigo": "1.1.2.2.2.2",
+                          "codigo": "1.1.2.2.2.02",
                           "nome": "Innovative Solutions GmbH",
                           "categoria": "A",
                           "valor": 30000
@@ -155,7 +154,7 @@
               "subcontas": [
                 {
                   "id": 22,
-                  "codigo": "1.1.3.1",
+                  "codigo": "1.1.3.01",
                   "nome": "Adiantamentos",
                   "categoria": "A",
                   "valor": 10000
@@ -178,7 +177,7 @@
               "subcontas": [
                 {
                   "id": 25,
-                  "codigo": "1.2.1.1",
+                  "codigo": "1.2.1.01",
                   "nome": "Créditos a Longo Prazo",
                   "categoria": "A",
                   "valor": 1000
@@ -205,14 +204,14 @@
                       "subcontas": [
                         {
                           "id": 29,
-                          "codigo": "1.2.2.1.1.1",
+                          "codigo": "1.2.2.1.1.01",
                           "nome": "Servidores",
                           "categoria": "A",
                           "valor": 500000
                         },
                         {
                           "id": 30,
-                          "codigo": "1.2.2.1.1.2",
+                          "codigo": "1.2.2.1.1.02",
                           "nome": "Computadores",
                           "categoria": "A",
                           "valor": 200000
@@ -221,20 +220,20 @@
                     },
                     {
                       "id": 31,
-                      "codigo": "1.2.2.1.2",
+                      "codigo": "1.2.2.1.02",
                       "nome": "Móveis e Utensílios",
                       "categoria": "S",
                       "subcontas": [
                         {
                           "id": 32,
-                          "codigo": "1.2.2.1.2.1",
+                          "codigo": "1.2.2.1.2.01",
                           "nome": "Mesas",
                           "categoria": "A",
                           "valor": 10000
                         },
                         {
                           "id": 33,
-                          "codigo": "1.2.2.1.2.2",
+                          "codigo": "1.2.2.1.2.02",
                           "nome": "Cadeiras",
                           "categoria": "A",
                           "valor": 10000
@@ -257,14 +256,14 @@
                       "subcontas": [
                         {
                           "id": 36,
-                          "codigo": "1.2.2.2.1.1",
+                          "codigo": "1.2.2.2.1.01",
                           "nome": "Desenolvimento agil com chatbot",
                           "categoria": "A",
                           "valor": 50000
                         },
                         {
                           "id": 37,
-                          "codigo": "1.2.2.2.1.2",
+                          "codigo": "1.2.2.2.1.02",
                           "nome": "IT innovation",
                           "categoria": "A",
                           "valor": 50000
@@ -285,18 +284,12 @@
                           "subcontas": [
                             {
                               "id": 105,
-                              "codigo": "1.2.2.2.2.1.1",
-                              "nome": "OpenAI",
+                              "codigo": "1.2.2.2.2.1.01",
+                              "nome": "Licenças Windows",
                               "categoria": "A",
-                              "valor": 19000
-                            },
-                            {
-                              "id": 106,
-                              "codigo": "1.2.2.2.2.1.2",
-                              "nome": "Azure",
-                              "categoria": "A",
-                              "valor": 70000
+                              "valor": 89000
                             }
+                        
                           ]
                         },
                         {
@@ -307,14 +300,14 @@
                           "subcontas": [
                             {
                               "id": 41,
-                              "codigo": "1.2.2.2.2.2.1",
+                              "codigo": "1.2.2.2.2.2.01",
                               "nome": "Plataforma Nexus",
                               "categoria": "A",
                               "valor": 60000
                             },
                             {
                               "id": 42,
-                              "codigo": "1.2.2.2.2.2.2",
+                              "codigo": "1.2.2.2.2.2.02",
                               "nome": "Aplicativo Orion",
                               "categoria": "A",
                               "valor": 30000
@@ -347,8 +340,30 @@
               "id": 45,
               "codigo": "2.1.1",
               "nome": "Obrigações Sociais e Trabalhistas",
-              "categoria": "A",
-              "valor": 200000
+              "categoria": "S",
+              "subcontas": [
+                {
+                  "id": 101,
+                  "codigo": "2.1.1.01",
+                  "nome": "Salários a Pagar",
+                  "categoria": "A",
+                  "valor": 100000
+                },
+                {
+                  "id": 102,
+                  "codigo": "2.1.1.02",
+                  "nome": "Encargos Sociais a Pagar",
+                  "categoria": "A",
+                  "valor": 50000
+                },
+                {
+                  "id": 103,
+                  "codigo": "2.1.1.03",
+                  "nome": "Férias e 13º Salário",
+                  "categoria": "A",
+                  "valor": 50000
+                }
+              ]
             },
             {
               "id": 46,
@@ -364,14 +379,14 @@
                   "subcontas": [
                     {
                       "id": 48,
-                      "codigo": "2.1.2.1.1",
+                      "codigo": "2.1.2.1.01",
                       "nome": "Supplies Corp",
                       "categoria": "A",
                       "valor": 30000
                     },
                     {
                       "id": 49,
-                      "codigo": "2.1.2.1.2",
+                      "codigo": "2.1.2.1.02",
                       "nome": "Tech Hardware Ltda",
                       "categoria": "A",
                       "valor": 40000
@@ -386,7 +401,7 @@
                   "subcontas": [
                     {
                       "id": 51,
-                      "codigo": "2.1.2.2.1",
+                      "codigo": "2.1.2.2.01",
                       "nome": "Global Supplies",
                       "categoria": "A",
                       "valor": 60000
@@ -406,19 +421,56 @@
               "id": 53,
               "codigo": "2.1.3",
               "nome": "Obrigações Fiscais",
-              "categoria": "A",
-              "valor": 95000
+              "categoria": "S",
+              "subcontas": [
+                {
+                  "id": 104,
+                  "codigo": "2.1.3.01",
+                  "nome": "Impostos a Recolher",
+                  "categoria": "A",
+                  "valor": 50000
+                },
+                {
+                  "id": 105,
+                  "codigo": "2.1.3.02",
+                  "nome": "Contribuições a Recolher",
+                  "categoria": "A",
+                  "valor": 30000
+                },
+                {
+                  "id": 106,
+                  "codigo": "2.1.3.03",
+                  "nome": "Taxas e Licenças",
+                  "categoria": "A",
+                  "valor": 15000
+                }
+              ]
             },
             {
               "id": 54,
               "codigo": "2.1.4",
               "nome": "Empréstimos e Financiamentos",
-              "categoria": "A",
-              "valor":78000
+              "categoria": "S",
+              "subcontas": [
+                {
+                  "id": 107,
+                  "codigo": "2.1.4.01",
+                  "nome": "Empréstimos Bancários de Curto Prazo",
+                  "categoria": "A",
+                  "valor": 50000
+                },
+                {
+                  "id": 108,
+                  "codigo": "2.1.4.02",
+                  "nome": "Financiamentos de Veículos de Curto Prazo",
+                  "categoria": "A",
+                  "valor": 58000
+                }
+              ]
             },
             {
               "id": 55,
-              "codigo": "2.1.5",
+              "codigo": "2.1.-5",
               "nome": "Outros Passivos de Curto Prazo",
               "categoria": "A",
               "valor": 10000
@@ -435,8 +487,23 @@
               "id": 57,
               "codigo": "2.2.1",
               "nome": "Empréstimos de Longo Prazo",
-              "categoria": "A",
-              "valor": 485000
+              "categoria": "S",
+              "subcontas": [
+                {
+                  "id": 109,
+                  "codigo": "2.2.1.01",
+                  "nome": "Empréstimos Bancários de Longo Prazo",
+                  "categoria": "A",
+                  "valor": 300000
+                },
+                {
+                  "id": 110,
+                  "codigo": "2.2.1.02",
+                  "nome": "Financiamentos de Veículos de Longo Prazo",
+                  "categoria": "A",
+                  "valor": 185000
+                }
+              ]
             },
             {
               "id": 58,
@@ -446,7 +513,7 @@
               "subcontas": [
                 {
                   "id": 59,
-                  "codigo": "2.2.2.1",
+                  "codigo": "2.2.2.01",
                   "nome": "Processos Judiciais",
                   "categoria": "A",
                   "valor": 50000
@@ -454,31 +521,29 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": 60,
-      "codigo": "3",
-      "nome": "Patrimônio Líquido",
-      "categoria": "S",
-      "subcontas": [
-        {
-          "id": 61,
-          "codigo": "3.1",
-          "nome": "Capital Social",
-          "categoria": "A",
-          "valor": 437000
         },
         {
-          "id": 62,
-          "codigo": "3.2",
-          "nome": "Reservas de Lucros",
-          "categoria": "A",
-          "valor": 50000
+          "id": 60,
+          "codigo": "2.3",
+          "nome": "Patrimônio Líquido",
+          "categoria": "S",
+          "subcontas": [
+            {
+              "id": 61,
+              "codigo": "2.3.01",
+              "nome": "Capital Social",
+              "categoria": "A",
+              "valor": 437000
+            },
+            {
+              "id": 62,
+              "codigo": "2.3.02",
+              "nome": "Reservas de Lucros",
+              "categoria": "A",
+              "valor": 50000
+            }
+          ]
         }
       ]
     }
- ]
-}
-                    
+  ]

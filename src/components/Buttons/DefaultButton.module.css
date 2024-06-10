@@ -10,6 +10,6 @@ a:-webkit-any-link {
 }
 
 a:-webkit-any-link:hover{
-    color: yellow;
-
+    color: white;
+    background-color: #021427;
 }

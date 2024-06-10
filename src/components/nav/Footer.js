@@ -15,7 +15,7 @@ function Footer() {
                         <FaLinkedin/>
                     </li>
                 </ul>
-           <p><span>Costs </span> &copy; 2023</p>
+           <p><span>Stage Softwares </span> &copy; 2024</p>
             
            
         </footer>

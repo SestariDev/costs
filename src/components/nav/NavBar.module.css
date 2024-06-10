@@ -23,7 +23,9 @@
 }
 
 .navItens a:hover{
-    color: rgb(235, 235, 84);
+    color: white;
+    font-size: 20px;
+
 }
 
 .navLink {

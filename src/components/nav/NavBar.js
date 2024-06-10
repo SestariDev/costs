@@ -6,9 +6,12 @@ function NavBar() {
     return(
         <div className={styles.navContainer}>
             <ul className={styles.navUl}>
-                <div>
+                <div className="flex items-center">
                     <li>
-                        <img src={logo} alt="Costs"></img>
+                        <img src={logo} alt="Costs" className="h-[9vh]"></img>
+                    </li>
+                    <li className="font-bold text-white">
+                        Stage Softwares
                     </li>
                 </div>
                 <div className={styles.navItens}>
@@ -16,7 +19,7 @@ function NavBar() {
                         <Link to='/' className={styles.navLink} key={'home'}>Home</Link>
                     </li>
                     <li>
-                        <Link to='/projetos' className={styles.navLink} key={'projects'}>Projetos</Link>
+                        <Link to='/projetos' className={styles.navLink} key={'projects'}>Plano de contas</Link>
                     </li>
                     <li>
                         <Link to='/empresa' className={styles.navLink} key={'empresa'}>Empresa</Link>

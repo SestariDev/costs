@@ -1,549 +1,975 @@
-export const contas =  [
-    {
-      "id": 1,
-      "codigo": "1",
-      "nome": "Ativos",
-      "categoria": "S",
-      "subcontas": [
-        {
-          "id": 2,
-          "codigo": "1.1",
-          "nome": "Ativo Circulante",
-          "categoria": "S",
-          "subcontas": [
-            {
-              "id": 3,
-              "codigo": "1.1.1",
-              "nome": "Disponibilidades",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 4,
-                  "codigo": "1.1.1.01",
-                  "nome": "Caixa",
-                  "categoria": "A",
-                  "valor": 50000
-                },
-                {
-                  "id": 5,
-                  "codigo": "1.1.1.2",
-                  "nome": "Aplicações Financeiras",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 6,
-                      "codigo": "1.1.1.2.01",
-                      "nome": "Curto Prazo",
-                      "categoria": "A",
-                      "valor": 245000
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": 7,
-              "codigo": "1.1.2",
-              "nome": "Valores a Receber",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 8,
-                  "codigo": "1.1.2.1",
-                  "nome": "Clientes Nacionais",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 9,
-                      "codigo": "1.1.2.1.1",
-                      "nome": "Clientes de São Paulo",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 10,
-                          "codigo": "1.1.2.1.1.01",
-                          "nome": "Empresa Alpha",
-                          "categoria": "A",
-                          "valor": 40000
-                        },
-                        {
-                          "id": 11,
-                          "codigo": "1.1.2.1.1.2",
-                          "nome": "Tech Solutions",
-                          "categoria": "A",
-                          "valor": 60000
-                        }
-                      ]
-                    },
-                    {
-                      "id": 12,
-                      "codigo": "1.1.2.1.2",
-                      "nome": "Clientes do Rio de Janeiro",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 13,
-                          "codigo": "1.1.2.1.2.01",
-                          "nome": "Innovatech",
-                          "categoria": "A",
-                          "valor": 50000
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "id": 14,
-                  "codigo": "1.1.2.2",
-                  "nome": "Clientes Internacionais",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 15,
-                      "codigo": "1.1.2.2.1",
-                      "nome": "Clientes dos EUA",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 16,
-                          "codigo": "1.1.2.2.1.01",
-                          "nome": "Global Tech Inc.",
-                          "categoria": "A",
-                          "valor": 30000
-                        },
-                        {
-                          "id": 17,
-                          "codigo": "1.1.2.2.1.02",
-                          "nome": "Silicon Valley Solutions",
-                          "categoria": "A",
-                          "valor": 20000
-                        }
-                      ]
-                    },
-                    {
-                      "id": 18,
-                      "codigo": "1.1.2.2.2",
-                      "nome": "Clientes da Europa",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 19,
-                          "codigo": "1.1.2.2.2.01",
-                          "nome": "EuroTech",
-                          "categoria": "A",
-                          "valor": 50000
-                        },
-                        {
-                          "id": 20,
-                          "codigo": "1.1.2.2.2.02",
-                          "nome": "Innovative Solutions GmbH",
-                          "categoria": "A",
-                          "valor": 30000
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": 21,
-              "codigo": "1.1.3",
-              "nome": "Outros Ativos Circulantes",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 22,
-                  "codigo": "1.1.3.01",
-                  "nome": "Adiantamentos",
-                  "categoria": "A",
-                  "valor": 10000
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": 23,
-          "codigo": "1.2",
-          "nome": "Ativo Não Circulante",
-          "categoria": "S",
-          "subcontas": [
-            {
-              "id": 24,
-              "codigo": "1.2.1",
-              "nome": "Ativo Realizável a Longo Prazo",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 25,
-                  "codigo": "1.2.1.01",
-                  "nome": "Créditos a Longo Prazo",
-                  "categoria": "A",
-                  "valor": 1000
-                }
-              ]
-            },
-            {
-              "id": 26,
-              "codigo": "1.2.2",
-              "nome": "Ativo Permanente",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 27,
-                  "codigo": "1.2.2.1",
-                  "nome": "Imobilizado",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 28,
-                      "codigo": "1.2.2.1.1",
-                      "nome": "Equipamentos de TI",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 29,
-                          "codigo": "1.2.2.1.1.01",
-                          "nome": "Servidores",
-                          "categoria": "A",
-                          "valor": 500000
-                        },
-                        {
-                          "id": 30,
-                          "codigo": "1.2.2.1.1.02",
-                          "nome": "Computadores",
-                          "categoria": "A",
-                          "valor": 200000
-                        }
-                      ]
-                    },
-                    {
-                      "id": 31,
-                      "codigo": "1.2.2.1.02",
-                      "nome": "Móveis e Utensílios",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 32,
-                          "codigo": "1.2.2.1.2.01",
-                          "nome": "Mesas",
-                          "categoria": "A",
-                          "valor": 10000
-                        },
-                        {
-                          "id": 33,
-                          "codigo": "1.2.2.1.2.02",
-                          "nome": "Cadeiras",
-                          "categoria": "A",
-                          "valor": 10000
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "id": 34,
-                  "codigo": "1.2.2.2",
-                  "nome": "Intangível",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 35,
-                      "codigo": "1.2.2.2.1",
-                      "nome": "Patentes e Marcas",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 36,
-                          "codigo": "1.2.2.2.1.01",
-                          "nome": "Desenolvimento agil com chatbot",
-                          "categoria": "A",
-                          "valor": 50000
-                        },
-                        {
-                          "id": 37,
-                          "codigo": "1.2.2.2.1.02",
-                          "nome": "IT innovation",
-                          "categoria": "A",
-                          "valor": 50000
-                        }
-                      ]
-                    },
-                    {
-                      "id": 38,
-                      "codigo": "1.2.2.2.2",
-                      "nome": "Softwares",
-                      "categoria": "S",
-                      "subcontas": [
-                        {
-                          "id": 39,
-                          "codigo": "1.2.2.2.2.1",
-                          "nome": "Licenças de Software",
-                          "categoria": "S",
-                          "subcontas": [
-                            {
-                              "id": 105,
-                              "codigo": "1.2.2.2.2.1.01",
-                              "nome": "Licenças Windows",
-                              "categoria": "A",
-                              "valor": 89000
-                            }
-                        
-                          ]
-                        },
-                        {
-                          "id": 40,
-                          "codigo": "1.2.2.2.2.2",
-                          "nome": "Desenvolvimento Interno",
-                          "categoria": "S",
-                          "subcontas": [
-                            {
-                              "id": 41,
-                              "codigo": "1.2.2.2.2.2.01",
-                              "nome": "Plataforma Nexus",
-                              "categoria": "A",
-                              "valor": 60000
-                            },
-                            {
-                              "id": 42,
-                              "codigo": "1.2.2.2.2.2.02",
-                              "nome": "Aplicativo Orion",
-                              "categoria": "A",
-                              "valor": 30000
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
+export const themes = {
+    apresentadores: {
+        theme: 'Apresentadores',
+        pics: [
+            'gugu',
+            'faustao',
+            'celso portioli',
+            'sabrina sato'
+        ]
     },
-    {
-      "id": 43,
-      "codigo": "2",
-      "nome": "Passivos",
-      "categoria": "S",
-      "subcontas": [
-        {
-          "id": 44,
-          "codigo": "2.1",
-          "nome": "Passivo Circulante",
-          "categoria": "S",
-          "subcontas": [
-            {
-              "id": 45,
-              "codigo": "2.1.1",
-              "nome": "Obrigações Sociais e Trabalhistas",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 101,
-                  "codigo": "2.1.1.01",
-                  "nome": "Salários a Pagar",
-                  "categoria": "A",
-                  "valor": 100000
-                },
-                {
-                  "id": 102,
-                  "codigo": "2.1.1.02",
-                  "nome": "Encargos Sociais a Pagar",
-                  "categoria": "A",
-                  "valor": 50000
-                },
-                {
-                  "id": 103,
-                  "codigo": "2.1.1.03",
-                  "nome": "Férias e 13º Salário",
-                  "categoria": "A",
-                  "valor": 50000
-                }
-              ]
-            },
-            {
-              "id": 46,
-              "codigo": "2.1.2",
-              "nome": "Fornecedores",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 47,
-                  "codigo": "2.1.2.1",
-                  "nome": "Fornecedores Nacionais",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 48,
-                      "codigo": "2.1.2.1.01",
-                      "nome": "Supplies Corp",
-                      "categoria": "A",
-                      "valor": 30000
-                    },
-                    {
-                      "id": 49,
-                      "codigo": "2.1.2.1.02",
-                      "nome": "Tech Hardware Ltda",
-                      "categoria": "A",
-                      "valor": 40000
-                    }
-                  ]
-                },
-                {
-                  "id": 50,
-                  "codigo": "2.1.2.2",
-                  "nome": "Fornecedores Internacionais",
-                  "categoria": "S",
-                  "subcontas": [
-                    {
-                      "id": 51,
-                      "codigo": "2.1.2.2.01",
-                      "nome": "Global Supplies",
-                      "categoria": "A",
-                      "valor": 60000
-                    },
-                    {
-                      "id": 52,
-                      "codigo": "2.1.2.2.2",
-                      "nome": "International Tech",
-                      "categoria": "A",
-                      "valor": 20000
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": 53,
-              "codigo": "2.1.3",
-              "nome": "Obrigações Fiscais",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 104,
-                  "codigo": "2.1.3.01",
-                  "nome": "Impostos a Recolher",
-                  "categoria": "A",
-                  "valor": 50000
-                },
-                {
-                  "id": 105,
-                  "codigo": "2.1.3.02",
-                  "nome": "Contribuições a Recolher",
-                  "categoria": "A",
-                  "valor": 30000
-                },
-                {
-                  "id": 106,
-                  "codigo": "2.1.3.03",
-                  "nome": "Taxas e Licenças",
-                  "categoria": "A",
-                  "valor": 15000
-                }
-              ]
-            },
-            {
-              "id": 54,
-              "codigo": "2.1.4",
-              "nome": "Empréstimos e Financiamentos",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 107,
-                  "codigo": "2.1.4.01",
-                  "nome": "Empréstimos Bancários de Curto Prazo",
-                  "categoria": "A",
-                  "valor": 50000
-                },
-                {
-                  "id": 108,
-                  "codigo": "2.1.4.02",
-                  "nome": "Financiamentos de Veículos de Curto Prazo",
-                  "categoria": "A",
-                  "valor": 58000
-                }
-              ]
-            },
-            {
-              "id": 55,
-              "codigo": "2.1.-5",
-              "nome": "Outros Passivos de Curto Prazo",
-              "categoria": "A",
-              "valor": 10000
-            }
-          ]
-        },
-        {
-          "id": 56,
-          "codigo": "2.2",
-          "nome": "Passivo Não Circulante",
-          "categoria": "S",
-          "subcontas": [
-            {
-              "id": 57,
-              "codigo": "2.2.1",
-              "nome": "Empréstimos de Longo Prazo",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 109,
-                  "codigo": "2.2.1.01",
-                  "nome": "Empréstimos Bancários de Longo Prazo",
-                  "categoria": "A",
-                  "valor": 300000
-                },
-                {
-                  "id": 110,
-                  "codigo": "2.2.1.02",
-                  "nome": "Financiamentos de Veículos de Longo Prazo",
-                  "categoria": "A",
-                  "valor": 185000
-                }
-              ]
-            },
-            {
-              "id": 58,
-              "codigo": "2.2.2",
-              "nome": "Provisões para Contingências",
-              "categoria": "S",
-              "subcontas": [
-                {
-                  "id": 59,
-                  "codigo": "2.2.2.01",
-                  "nome": "Processos Judiciais",
-                  "categoria": "A",
-                  "valor": 50000
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": 60,
-          "codigo": "2.3",
-          "nome": "Patrimônio Líquido",
-          "categoria": "S",
-          "subcontas": [
-            {
-              "id": 61,
-              "codigo": "2.3.01",
-              "nome": "Capital Social",
-              "categoria": "A",
-              "valor": 437000
-            },
-            {
-              "id": 62,
-              "codigo": "2.3.02",
-              "nome": "Reservas de Lucros",
-              "categoria": "A",
-              "valor": 50000
-            }
-          ]
-        }
-      ]
+    filmes: {
+        theme: 'Filmes',
+        pics: [
+            'Star Wars',
+            'Harry Potter',
+            'Jurassic Park',
+            'Titanic'
+        ]
+    },
+    personagens: {
+        theme: 'Personagens',
+        pics: [
+            'Homem-Aranha',
+            'Batman',
+            'Mickey Mouse',
+            'Homem de Ferro'
+        ]
+    },
+    animais: {
+        theme: 'Animais',
+        pics: [
+            'Leão',
+            'Elefante',
+            'Tigre',
+            'Girafa'
+        ]
+    },
+    transportes: {
+        theme: 'Transportes',
+        pics: [
+            'Carro',
+            'Avião',
+            'Ônibus',
+            'Trem'
+        ]
+    },
+    esportes: {
+        theme: 'Esportes',
+        pics: [
+            'Futebol',
+            'Basquete',
+            'Tênis',
+            'Natação'
+        ]
+    },
+    profissões: {
+        theme: 'Profissões',
+        pics: [
+            'Médico',
+            'Professor',
+            'Piloto',
+            'Bombeiro'
+        ]
+    },
+    comidas: {
+        theme: 'Comidas',
+        pics: [
+            'Pizza',
+            'Hambúrguer',
+            'Sushi',
+            'Salada'
+        ]
+    },
+    instrumentosMusicais: {
+        theme: 'Instrumentos Musicais',
+        pics: [
+            'Violão',
+            'Piano',
+            'Guitarra',
+            'Bateria'
+        ]
+    },
+    ferramentas: {
+        theme: 'Ferramentas',
+        pics: [
+            'Martelo',
+            'Chave de fenda',
+            'Serra',
+            'Alicate'
+        ]
+    },
+    frutas: {
+        theme: 'Frutas',
+        pics: [
+            'Maçã',
+            'Banana',
+            'Morango',
+            'Abacaxi'
+        ]
+    },
+    países: {
+        theme: 'Países',
+        pics: [
+            'Brasil',
+            'Estados Unidos',
+            'Japão',
+            'Austrália'
+        ]
+    },
+    instrumentosCientíficos: {
+        theme: 'Instrumentos Científicos',
+        pics: [
+            'Microscópio',
+            'Telescópio',
+            'Balança',
+            'Béquer'
+        ]
+    },
+    filmes_2: {
+        theme: 'Filmes',
+        pics: [
+            'Avatar',
+            'Matrix',
+            'O Rei Leão',
+            'Vingadores'
+        ]
+    },
+    personagens_2: {
+        theme: 'Personagens',
+        pics: [
+            'Superman',
+            'Capitão América',
+            'Sonic',
+            'Darth Vader'
+        ]
+    },
+    animais_2: {
+        theme: 'Animais',
+        pics: [
+            'Cachorro',
+            'Gato',
+            'Cavalo',
+            'Panda'
+        ]
+    },
+    transportes_2: {
+        theme: 'Transportes',
+        pics: [
+            'Barco',
+            'Helicóptero',
+            'Metrô',
+            'Bicicleta'
+        ]
+    },
+    esportes_2: {
+        theme: 'Esportes',
+        pics: [
+            'Golfe',
+            'Surfe',
+            'Boxe',
+            'Vôlei'
+        ]
+    },
+    profissões_2: {
+        theme: 'Profissões',
+        pics: [
+            'Advogado',
+            'Arquiteto',
+            'Jornalista',
+            'Cozinheiro'
+        ]
+    },
+    comidas_2: {
+        theme: 'Comidas',
+        pics: [
+            'Chocolate',
+            'Macarrão',
+            'Sanduíche',
+            'Sorvete'
+        ]
+    },
+    instrumentosMusicais_2: {
+        theme: 'Instrumentos Musicais',
+        pics: [
+            'Flauta',
+            'Harpa',
+            'Trompete',
+            'Violino'
+        ]
+    },
+    ferramentas_2: {
+        theme: 'Ferramentas',
+        pics: [
+            'Serrote',
+            'Escova',
+            'Martelo de borracha',
+            'Serra circular'
+        ]
+    },
+    frutas_2: {
+        theme: 'Frutas',
+        pics: [
+            'Laranja',
+            'Kiwi',
+            'Melancia',
+            'Pêssego'
+        ]
+    },
+    países_2: {
+        theme: 'Países',
+        pics: [
+            'França',
+            'China',
+            'Índia',
+            'Rússia'
+        ]
+    },
+    instrumentosCientíficos_2: {
+        theme: 'Instrumentos Científicos',
+        pics: [
+            'Espectrômetro',
+            'Cromatógrafo',
+            'Voltímetro',
+            'Barômetro'
+        ]
+    },
+    esportes_3: {
+        theme: 'Esportes',
+        pics: [
+            'Golfe',
+            'Surfe',
+            'Boxe',
+            'Vôlei'
+        ]
+    },
+    escola_3: {
+        theme: 'Itens Escolares',
+        pics: [
+            'Lápis',
+            'Caderno',
+            'Régua',
+            'Mochila'
+        ]
+    },
+    cozinha_3: {
+        theme: 'Utensílios de Cozinha',
+        pics: [
+            'Panela',
+            'Faca',
+            'Colher',
+            'Escorredor'
+        ]
+    },
+    moveis_3: {
+        theme: 'Móveis',
+        pics: [
+            'Sofá',
+            'Cama',
+            'Mesa',
+            'Estante'
+        ]
+    },
+    utensilios_3: {
+        theme: 'Utensílios',
+        pics: [
+            'Martelo',
+            'Chave de fenda',
+            'Alicate',
+            'Chave inglesa'
+        ]
+    },
+    natureza_3: {
+        theme: 'Elementos da Natureza',
+        pics: [
+            'Montanha',
+            'Rio',
+            'Sol',
+            'Árvore'
+        ]
+    },
+    profissoes_3: {
+        theme: 'Profissões',
+        pics: [
+            'Médico',
+            'Professor',
+            'Engenheiro',
+            'Advogado'
+        ]
+    },
+    meiosTransporte_3: {
+        theme: 'Meios de Transporte',
+        pics: [
+            'Carro',
+            'Avião',
+            'Bicicleta',
+            'Navio'
+        ]
+    },
+    corpoHumano_3: {
+        theme: 'Partes do Corpo',
+        pics: [
+            'Braço',
+            'Perna',
+            'Olho',
+            'Coração'
+        ]
+    },
+    ferramentas_3: {
+        theme: 'Ferramentas',
+        pics: [
+            'Serrote',
+            'Trena',
+            'Marreta',
+            'Plaina'
+        ]
+    },
+    musica_3: {
+        theme: 'Instrumentos Musicais',
+        pics: [
+            'Guitarra',
+            'Violão',
+            'Bateria',
+            'Piano'
+        ]
+    },
+    tecnologia_3: {
+        theme: 'Tecnologia',
+        pics: [
+            'Computador',
+            'Celular',
+            'Tablet',
+            'Impressora'
+        ]
+    },
+    transportes_3: {
+        theme: 'Meios de Transporte',
+        pics: [
+            'Moto',
+            'Helicóptero',
+            'Trem',
+            'Patinete'
+        ]
+    },
+    comidas_3: {
+        theme: 'Comidas',
+        pics: [
+            'Pizza',
+            'Hambúrguer',
+            'Sushi',
+            'Salada'
+        ]
+    },
+    filmes_3: {
+        theme: 'Filmes',
+        pics: [
+            'Avatar',
+            'Star Wars',
+            'Jurassic Park',
+            'Titanic'
+        ]
+    },
+    instrumentosCientificos_3: {
+        theme: 'Instrumentos Científicos',
+        pics: [
+            'Microscópio',
+            'Telescópio',
+            'Escala',
+            'Termômetro'
+        ]
+    },
+    desenhos_3: {
+        theme: 'Desenhos',
+        pics: [
+            'Bob Esponja',
+            'Pateta',
+            'Pikachu',
+            'Tom e Jerry'
+        ]
+    },
+    escola_5: {
+        theme: 'Objetos de Escola',
+        pics: [
+            'Borracha',
+            'Tesoura',
+            'Apontador',
+            'Caneta'
+        ]
+    },
+    ferramentas_5: {
+        theme: 'Ferramentas',
+        pics: [
+            'Serrote',
+            'Escova',
+            'Martelo de borracha',
+            'Serra circular'
+        ]
+    },
+    marcas: {
+        theme: 'Marcas',
+        pics: [
+            'Apple',
+            'Nike',
+            'Coca-Cola',
+            'Adidas'
+        ]
+    },
+    comidas_5: {
+        theme: 'Comidas',
+        pics: [
+            'Chocolate',
+            'Macarrão',
+            'Sanduíche',
+            'Sorvete'
+        ]
+    },
+    objetosCasa: {
+        theme: 'Objetos de Casa',
+        pics: [
+            'Televisão',
+            'Cama',
+            'Geladeira',
+            'Mesa de jantar'
+        ]
+    },
+    doces: {
+        theme: 'Doces',
+        pics: [
+            'Chocolate',
+            'Bala',
+            'Pirulito',
+            'Bombom'
+        ]
+    },
+    materiaisEscolares: {
+        theme: 'Materiais Escolares',
+        pics: [
+            'Tesoura',
+            'Apontador',
+            'Cola',
+            'Caneta'
+        ]
+    },
+    eletrodomesticos: {
+        theme: 'Eletrodomésticos',
+        pics: [
+            'Geladeira',
+            'Liquidificador',
+            'Aspirador de pó',
+            'Micro-ondas'
+        ]
+    },
+    estacoesAno: {
+        theme: 'Estações do Ano',
+        pics: [
+            'Verão',
+            'Outono',
+            'Inverno',
+            'Primavera'
+        ]
+    },
+    materiaisConstrucao: {
+        theme: 'Materiais de Construção',
+        pics: [
+            'Cimento',
+            'Tijolo',
+            'Arame',
+            'Telha'
+        ]
+    },
+    cores: {
+        theme: 'Cores',
+        pics: [
+            'Azul',
+            'Verde',
+            'Vermelho',
+            'Amarelo'
+        ]
+    },
+    instrumentosCozinha: {
+        theme: 'Instrumentos de Cozinha',
+        pics: [
+            'Frigideira',
+            'Espátula',
+            'Forma de bolo',
+            'Pipoqueira'
+        ]
+    },
+    hobbies: {
+        theme: 'Hobbies',
+        pics: [
+            'Pintura',
+            'Fotografia',
+            'Jardinagem',
+            'Pescaria'
+        ]
+    },
+    meiosComunicacao: {
+        theme: 'Meios de Comunicação',
+        pics: [
+            'Telefone',
+            'Rádio',
+            'TV',
+            'Internet'
+        ]
+    },marcas_7: {
+        theme: 'Marcas',
+        pics: [
+            'Microsoft',
+            'Sony',
+            'Mercedes-Benz',
+            'BMW'
+        ]
+    },
+    marcas_8: {
+        theme: 'Marcas',
+        pics: [
+            'Pepsi',
+            'Disney',
+            'Louis Vuitton',
+            'Honda'
+        ]
+    },
+    objetosCasa_6: {
+        theme: 'Objetos de Casa',
+        pics: [
+            'Fogão',
+            'Cama',
+            'Micro-ondas',
+            'Mesa de Jantar'
+        ]
+    },
+    objetosCasa_7: {
+        theme: 'Objetos de Casa',
+        pics: [
+            'Poltrona',
+            'Lustre',
+            'Tapete',
+            'Estátua'
+        ]
+    },
+    objetosCasa_8: {
+        theme: 'Objetos de Casa',
+        pics: [
+            'Cadeira',
+            'Quadro',
+            'Relógio',
+            'Vaso'
+        ]
+    },
+    instrumentosMusica_5: {
+        theme: 'Instrumentos de Música',
+        pics: [
+            'Violoncelo',
+            'Flauta Transversal',
+            'Harpa',
+            'Acordeão'
+        ]
+    },
+    instrumentosMusica_6: {
+        theme: 'Instrumentos de Música',
+        pics: [
+            'Trompete',
+            'Trombone',
+            'Violino',
+            'Xilofone'
+        ]
+    },
+    instrumentosMusica_7: {
+        theme: 'Instrumentos de Música',
+        pics: [
+            'Orgão',
+            'Tuba',
+            'Saxofone',
+            'Gaita'
+        ]
+    },
+    instrumentosMusica_8: {
+        theme: 'Instrumentos de Música',
+        pics: [
+            'Oboé',
+            'Pandeireta',
+            'Tambor',
+            'Triângulo'
+        ]
+    },
+    comidas_9: {
+        theme: 'Comidas',
+        pics: [
+            'Lasanha',
+            'Panqueca',
+            'Churrasco',
+            'Purê de Batata'
+        ]
+    },
+    comidas_6: {
+        theme: 'Comidas',
+        pics: [
+            'Brigadeiro',
+            'Pastel',
+            'Risoto',
+            'Pão de Queijo'
+        ]
+    },
+    comidas_7: {
+        theme: 'Comidas',
+        pics: [
+            'Coxinha',
+            'Feijoada',
+            'Açaí',
+            'Cuscuz'
+        ]
+    },
+    comidas_8: {
+        theme: 'Comidas',
+        pics: [
+            'Mousse',
+            'Tapioca',
+            'Sorvete',
+            'Tiramisù'
+        ]
+    },
+    ferramentas_6: {
+        theme: 'Ferramentas',
+        pics: [
+            'Serrote',
+            'Formão',
+            'Nível',
+            'Alicate de Bico'
+        ]
+    },
+    ferramentas_7: {
+        theme: 'Ferramentas',
+        pics: [
+            'Serra Elétrica',
+            'Trena',
+            'Martelo de Unha',
+            'Chave Inglesa'
+        ]
+    },
+    ferramentas_8: {
+        theme: 'Ferramentas',
+        pics: [
+            'Escova de Aço',
+            'Soprador Térmico',
+            'Serra Copo',
+            'Cortador de Vidro'
+        ]
+    },
+    objetosEscritorio: {
+        theme: 'Objetos de Escritório',
+        pics: [
+            'Caneta esferográfica',
+            'Grampo de papel',
+            'Calculadora',
+            'Lupa'
+        ]
+    },
+    instrumentosMusicaisTradicionais: {
+        theme: 'Instrumentos Musicais Tradicionais',
+        pics: [
+            'Sitar',
+            'Gaita de foles',
+            'Berimbau',
+            'Gongue'
+        ]
+    },
+    marcasCarros: {
+        theme: 'Marcas de Carros',
+        pics: [
+            'Ferrari',
+            'Lamborghini',
+            'Tesla',
+            'Rolls-Royce'
+        ]
+    },
+    esportesRadicais: {
+        theme: 'Esportes Radicais',
+        pics: [
+            'Paraquedismo',
+            'Bungee jumping',
+            'Rafting',
+            'Surf'
+        ]
+    },
+    elementosTabelaPeriodica: {
+        theme: 'Elementos da Tabela Periódica',
+        pics: [
+            'Oxigênio',
+            'Hélio',
+            'Carbono',
+            'Ferro'
+        ]
+    },
+    tiposDanca: {
+        theme: 'Tipos de Dança',
+        pics: [
+            'Salsa',
+            'Ballet',
+            'Breakdance',
+            'Flamenco'
+        ]
+    },
+    pecasTeatroClassicas: {
+        theme: 'Peças de Teatro Clássicas',
+        pics: [
+            'Romeu e Julieta',
+            'Hamlet',
+            'Otelo',
+            'Macbeth'
+        ]
+    },
+    especiesMarinhas: {
+        theme: 'Espécies Marinhas',
+        pics: [
+            'Tubarão Martelo',
+            'Estrela-do-mar',
+            'Polvo ',
+            'Peixe-Palhaço'
+        ]
+    },
+    paisesEuropa: {
+        theme: 'Países da Europa',
+        pics: [
+            'Itália',
+            'Espanha',
+            'Holanda',
+            'Suécia'
+        ]
+    },
+    personagens_4: {
+        theme: 'Personagens',
+        pics: [
+            'Sherlock Holmes',
+            'Branca de Neve',
+            'Dumbledore',
+            'Homer Simpson'
+        ]
+    },
+    personagens_5: {
+        theme: 'Personagens',
+        pics: [
+            'Ariel',
+            'Thor',
+            'Bart Simpson',
+            'Doraemon'
+        ]
+    },
+    personagens_6: {
+        theme: 'Personagens',
+        pics: [
+            'Hulk',
+            'Harry Potter',
+            'Capitão Jack Sparrow',
+            'Goku'
+        ]
+    },
+    personagens_7: {
+        theme: 'Personagens',
+        pics: [
+            'Cinderela',
+            'Wolverine',
+            'Popeye',
+            'Dumbo'
+        ]
+    },
+    personagens_8: {
+        theme: 'Personagens',
+        pics: [
+            'Minion',
+            'Cruella',
+            'Elmo',
+            'Jack Skellington'
+        ]
+    },
+    personagens_9: {
+        theme: 'Personagens',
+        pics: [
+            'Mulan',
+            'Flash',
+            'Ratatouille',
+            'Minnie Mouse'
+        ]
+    },
+    personagens_10: {
+        theme: 'Personagens',
+        pics: [
+            'Buzz Lightyear',
+            'Hermione Granger',
+            'Popeye',
+            'Gandalf'
+        ]
+    },
+    personagens_11: {
+        theme: 'Personagens',
+        pics: [
+            'Pateta',
+            'Buzz Lightyear',
+            'Snoopy',
+            'Margarida'
+        ]
+    },
+    personagens_12: {
+        theme: 'Personagens',
+        pics: [
+            'Woody',
+            'Shrek',
+            'Pernalonga',
+            'Astronauta'
+        ]
+    },
+    personagens_13: {
+        theme: 'Personagens',
+        pics: [
+            'Betty Boop',
+            'Pinóquio',
+            'Peter Pan',
+            'Aladdin'
+        ]
+    },
+    personagens_14: {
+        theme: 'Personagens',
+        pics: [
+            'Dory',
+            'Tarzan',
+            'Scooby-Doo',
+            'Pato Donald'
+        ]
+    },
+    personagens_15: {
+        theme: 'Personagens',
+        pics: [
+            'Gollum',
+            'Mowgli',
+            'Peppa Pig',
+            'Coringa'
+        ]
+    },
+    personagens_16: {
+        theme: 'Personagens',
+        pics: [
+            'Bela Adormecida',
+            'Jimmy Neutron',
+            'Gato de Botas',
+            'Gambit'
+        ]
+    },
+    personagens_17: {
+        theme: 'Personagens',
+        pics: [
+            'Nemo',
+            'Hércules',
+            'Velma',
+            'Wall-E'
+        ]
+    },
+    personagens_18: {
+        theme: 'Personagens',
+        pics: [
+            'Mulan',
+            'Flash',
+            'Ratatouille',
+            'Minnie Mouse'
+        ]
+    },
+    personagens_19: {
+        theme: 'Personagens',
+        pics: [
+            'Buzz Lightyear',
+            'Hermione Granger',
+            'Popeye',
+            'Gandalf'
+        ]
+    },
+    personagens_20: {
+        theme: 'Personagens',
+        pics: [
+            'Snoopy',
+            'Pateta',
+            'Margarida',
+            'Groot'
+        ]
+    },
+    animais_11: {
+        theme: 'Animais',
+        pics: [
+            'Pinguim',
+            'Gorila',
+            'Zebra',
+            'Borboleta'
+        ]
+    },
+    animais_12: {
+        theme: 'Animais',
+        pics: [
+            'Girafa',
+            'Rinoceronte',
+            'Polvo',
+            'Foca'
+        ]
+    },
+    animais_13: {
+        theme: 'Animais',
+        pics: [
+            'Tubarão',
+            'Panda Vermelho',
+            'Coruja',
+            'Peixe-palhaço'
+        ]
+    },
+    animais_14: {
+        theme: 'Animais',
+        pics: [
+            'Camaleão',
+            'Texugo',
+            'Coala',
+            'Alce'
+        ]
+    },
+    animais_15: {
+        theme: 'Animais',
+        pics: [
+            'Suricato',
+            'Quati',
+            'Caracol',
+            'Raposa'
+        ]
+    },
+    animais_16: {
+        theme: 'Animais',
+        pics: [
+            'Papagaio',
+            'Lagosta',
+            'Doninha',
+            'Pônei'
+        ]
+    },
+    animais_17: {
+        theme: 'Animais',
+        pics: [
+            'Hamster',
+            'Pica-pau',
+            'Toupeira',
+            'Ouriço'
+        ]
+    },
+    animais_18: {
+        theme: 'Animais',
+        pics: [
+            'Lêmure',
+            'Quati',
+            'Canguru',
+            'Ariranha'
+        ]
+    },
+    animais_19: {
+        theme: 'Animais',
+        pics: [
+            'Lontra',
+            'Leopardo',
+            'Corvo',
+            'Elefante'
+        ]
+    },
+    animais_20: {
+        theme: 'Animais',
+        pics: [
+            'Furão',
+            'Tigre Branco',
+            'Preguiça',
+            'Carneiro'
+        ]
     }
-  ]
+
+};
+

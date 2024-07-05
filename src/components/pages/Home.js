@@ -3,6 +3,8 @@ import Container from '../nav/Container';
 import img from '../../img/costs_logo.png';
 import { themes } from '../../contas';
 import NavBar from '../nav/NavBar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function Home(props) {
     const [tempTime, setTempTime] = useState(60);
@@ -26,16 +28,9 @@ function Home(props) {
         }
     };
 
-
     const handleRemoveParticipant = (indexToRemove) => {
         setParticipants(participants.filter((_, index) => index !== indexToRemove));
     };
-
-
-    
-    
-    
-
 
     return (
         <Container>
@@ -122,7 +117,6 @@ export const Game = (props) => {
             setShowScore(true);
         }
     }, [timerRunning, timeLeft]);
-    
 
     const selectRandomTheme = () => {
         const themeKeys = Object.keys(themes).filter(key => !usedThemes.includes(key));
@@ -198,7 +192,7 @@ export const Game = (props) => {
         <div className='absolute top-0 left-0 w-full h-full p-6 bg-gray-300'>
             
             <div className='flex justify-between w-full'>
-                    <img src={img} alt='Costs' height="30%" width="35%" />
+                <img src={img} alt='Costs' height="30%" width="35%" />
                 <p className='text-lg font-extrabold text-black cursor-pointer' onClick={props.handleClose}>X</p>
             </div>
             {allThemesUsed ? (
@@ -218,6 +212,17 @@ export const Game = (props) => {
             ) : (
                 index === 0 ? (
                     <div className='flex flex-col items-center justify-center h-full text-center'>
+                        <div style={{ width: 100, height: 100, marginBottom: 20 }}>
+                            <CircularProgressbar
+                                value={(timeLeft / props.time) * 100}
+                                text={`${timeLeft}s`}
+                                styles={buildStyles({
+                                    textColor: 'black',
+                                    pathColor: 'green',
+                                    trailColor: 'gray'
+                                })}
+                            />
+                        </div>
                         <h1 className='mb-4 text-4xl text-black min-w-8'>{selectedTheme?.theme}</h1>
                         <div>
                             <p className='mb-2 text-black min-w-8'>Selecione o desenhista:</p>
@@ -232,6 +237,17 @@ export const Game = (props) => {
                     </div>
                 ) : (
                     <div className='flex flex-col items-center justify-center h-full text-center'>
+                        <div style={{ width: 100, height: 100, marginBottom: 20 }}>
+                            <CircularProgressbar
+                                value={(timeLeft / props.time) * 100}
+                                text={`${timeLeft}s`}
+                                styles={buildStyles({
+                                    textColor: 'black',
+                                    pathColor: 'green',
+                                    trailColor: 'gray'
+                                })}
+                            />
+                        </div>
                         <h1 className='mb-4 text-4xl text-black'>{selectedTheme?.pics[index-1]}</h1>
                         <div className='flex flex-wrap justify-center gap-2 mb-4'>
                             {participants.filter(participant => participant.name !== drawer).map((participant, index) => (
@@ -244,10 +260,6 @@ export const Game = (props) => {
                     </div>
                 )
             )}
-            <div className='fixed bottom-0 left-0 w-full bg-gray-700'>
-                <div className='h-2 bg-green-500' style={{ width: `${(timeLeft / props.time) * 100}%` }}></div>
-            </div>
-            <p className='fixed text-lg text-black transform -translate-x-1/2 left-1/2 bottom-4'>{timeLeft} segundos restantes</p>
         </div>
         </>
     );

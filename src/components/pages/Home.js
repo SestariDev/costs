@@ -5,6 +5,7 @@ import { themes } from '../../contas';
 import NavBar from '../nav/NavBar';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 function Home(props) {
     const [tempTime, setTempTime] = useState(60);
@@ -34,8 +35,8 @@ function Home(props) {
 
     return (
         <Container>
-            <div className='flex items-center justify-center w-full gap-2'>
-                <img src={img} alt='Costs' height="30%" width="70%" />
+            <div className='flex items-center justify-center w-full gap-2 sX:justify-end'>
+                <img src={img} alt='Costs'className='w-[70%] s2:w-[200px] sX:h-[5%] h-[30%] '/>
             </div>
             
             <p>Tempo de jogo</p>
@@ -65,8 +66,8 @@ function Home(props) {
             
             <ul>
                 {participants.map((participant, index) => (
-                    <li key={index} className='flex justify-between text-[22px] pl-2'>
-                        {participant.name} - Pontuação: {participant.score}
+                    <li key={index} className='flex justify-between text-[18px] pl-2'>
+                        {participant.name} -  {participant.score}
                         <div 
                         onClick={() => handleRemoveParticipant(index)} 
                         className='ml-2 font-extrabold text-red-500'>X</div>
@@ -98,6 +99,7 @@ export const Game = (props) => {
     const [allThemesUsed, setAllThemesUsed] = useState(false);
     const [allPicsAnswered, setAllPicsAnswered] = useState(false);
     const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [showWord, setShowWord] = useState(true);
 
     const audioRef = useRef(new Audio('acabou.mp3'));
 
@@ -117,6 +119,16 @@ export const Game = (props) => {
             setShowScore(true);
         }
     }, [timerRunning, timeLeft]);
+
+    useEffect(() => {
+        if (index > 0) {
+            setShowWord(true);
+            const timer = setTimeout(() => {
+                setShowWord(false);
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [index]);
 
     const selectRandomTheme = () => {
         const themeKeys = Object.keys(themes).filter(key => !usedThemes.includes(key));
@@ -187,13 +199,14 @@ export const Game = (props) => {
     }, [correctAnswers]);
 
     return (
-        <>
-        <NavBar/>
-        <div className='absolute top-0 left-0 w-full h-full p-6 bg-gray-300'>
-            
+        <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-full p-6 bg-gray-300'>
             <div className='flex justify-between w-full'>
-                <img src={img} alt='Costs' height="30%" width="35%" />
-                <p className='text-lg font-extrabold text-black cursor-pointer' onClick={props.handleClose}>X</p>
+                <img src={img} alt='Costs' className='s2:w-[200px] w-[100px]' />
+                <p className='text-lg font-extrabold text-black cursor-pointer' onClick={() => {
+                    props.handleClose();
+                    audioRef.current.pause();
+                    audioRef.current.currentTime = 0;
+                }}>X</p>
             </div>
             {allThemesUsed ? (
                 <div className='flex flex-col items-center justify-center h-full text-center'>
@@ -223,15 +236,17 @@ export const Game = (props) => {
                                 })}
                             />
                         </div>
-                        <h1 className='mb-4 text-4xl text-black min-w-8'>{selectedTheme?.theme}</h1>
-                        <div>
-                            <p className='mb-2 text-black min-w-8'>Selecione o desenhista:</p>
-                            <div className='flex flex-wrap justify-center gap-2'>
-                                {participants.map((participant, index) => (
-                                    <button key={index} className='p-2 font-bold text-white bg-black rounded min-w-8' onClick={() => handleDrawerSelection(participant.name)}>
-                                        {participant.name}
-                                    </button>
-                                ))}
+                        <div className='w-full'>
+                            <h1 className='mb-4 text-4xl text-black min-w-8'>{selectedTheme?.theme}</h1>
+                            <div>
+                                <p className='mb-2 text-black min-w-8'>Selecione o desenhista:</p>
+                                <div className='flex flex-wrap justify-center gap-2'>
+                                    {participants.map((participant, index) => (
+                                        <button key={index} className='p-2 font-bold text-white bg-black rounded min-w-8' onClick={() => handleDrawerSelection(participant.name)}>
+                                            {participant.name}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -248,7 +263,15 @@ export const Game = (props) => {
                                 })}
                             />
                         </div>
-                        <h1 className='mb-4 text-4xl text-black'>{selectedTheme?.pics[index-1]}</h1>
+                        <div className='flex items-center gap-3 mb-4 text-4xl text-black'>
+                            {showWord ? selectedTheme?.pics[index-1] : '-----'}
+                            {showWord ? (
+                                <FiEyeOff onClick={() => setShowWord(false)} className='cursor-pointer' />
+                            ) : (
+                                <FiEye onClick={() => setShowWord(true)} className='cursor-pointer' />
+                            )}
+                        </div>
+                        <p className='mb-2 text-black min-w-8'>Quem acertou?:</p>
                         <div className='flex flex-wrap justify-center gap-2 mb-4'>
                             {participants.filter(participant => participant.name !== drawer).map((participant, index) => (
                                 <button key={index} className='p-2 text-white bg-black rounded' onClick={() => handleParticipantClick(participant.name)}>
@@ -261,7 +284,6 @@ export const Game = (props) => {
                 )
             )}
         </div>
-        </>
     );
 };
 

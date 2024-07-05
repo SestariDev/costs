@@ -1,4 +1,4 @@
-footer{
+footer {
     background-color: #021427;
     color: white;
     width: 100%;
@@ -9,6 +9,14 @@ footer{
     justify-content: center;
     align-items: center;
 }
+
+/* Media query para esconder o footer em telas com largura mínima de 480px */
+@media (min-width: 480px) {
+    footer {
+        display: none;
+    }
+}
+
 .footerList{
     display: flex;
     flex-direction: row;
@@ -17,3 +25,4 @@ footer{
     font-size: 2em;
     gap: 1em;
 }
+

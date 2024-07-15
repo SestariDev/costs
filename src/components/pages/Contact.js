@@ -13,10 +13,10 @@ function Contact(props) {
           <img src={img} alt="Costs Logo"/>
         </a>
         <a href="/perfil" className='rounded-lg w-[47%] flex aspect-square justify-center items-center border '>
-          <img src={perfil} alt="Perfil Image"/>
+          <img src={perfil} alt="serro"/>
         </a>
         <a href="/roda" className='rounded-lg w-[47%] flex aspect-square justify-center items-center border border-solid border-gray-500'>
-          <img src={Roda} alt="Roda Image"/>
+          <img src={Roda} alt="erro"/>
         </a>
       </div>
     </Container>

@@ -1,55 +1,51 @@
-/* Arquivo WheelOfFortuneGame.module.css */
-
-.wheel-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-
-.wheel {
+.wheel-container {
+    position: relative;
     width: 300px;
     height: 300px;
-    background-color: #FCD34D;
+    margin: 0 auto;
+    border: 10px solid #ccc;
     border-radius: 50%;
+    overflow: hidden;
+}
+
+.wheel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: rotate(0deg);
+    transition: transform 4s ease-out;
+}
+
+.wheel-segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    transform-origin: 100% 100%;
+}
+
+.wheel-segment span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    transform: rotate(0deg);
 }
 
-.wheel-item {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 150px 75px 0;
-    border-color: #FCD34D transparent transparent;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: transform 3s ease-in-out;
-}
-
-.pin {
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 20;
-}
-
-.spin-animation {
-    transform: translateX(-50%) rotate(1080deg);
-}
+.wheel-segment:nth-child(1) { transform: rotate(0deg); background-color: #ff0000; }
+.wheel-segment:nth-child(2) { transform: rotate(30deg); background-color: #ff8000; }
+.wheel-segment:nth-child(3) { transform: rotate(60deg); background-color: #ffff00; }
+.wheel-segment:nth-child(4) { transform: rotate(90deg); background-color: #80ff00; }
+.wheel-segment:nth-child(5) { transform: rotate(120deg); background-color: #00ff00; }
+.wheel-segment:nth-child(6) { transform: rotate(150deg); background-color: #00ff80; }
+.wheel-segment:nth-child(7) { transform: rotate(180deg); background-color: #00ffff; }
+.wheel-segment:nth-child(8) { transform: rotate(210deg); background-color: #0080ff; }
+.wheel-segment:nth-child(9) { transform: rotate(240deg); background-color: #0000ff; }
+.wheel-segment:nth-child(10) { transform: rotate(270deg); background-color: #8000ff; }
+.wheel-segment:nth-child(11) { transform: rotate(300deg); background-color: #ff00ff; }
+.wheel-segment:nth-child(12) { transform: rotate(330deg); background-color: #ff0080; }

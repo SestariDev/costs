@@ -6,6 +6,7 @@ import NavBar from './components/nav/NavBar';
 import Footer from './components/nav/Footer';
 import NewProject from './components/pages/NewProject';
 import WheelOfFortuneGame from './components/pages/Projects';
+import Perfil from './components/pages/Perfil';
 
 
 function App() {
@@ -16,12 +17,11 @@ function App() {
         <NavBar/>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Contact />} />
+          <Route path="/pic" element={<Home />} />
           <Route path="/roda" element={<WheelOfFortuneGame />} />
-          <Route path="/empresa" element={<Work />} />
-          <Route path="/contato" element={<Contact />} />
-          <Route path="/newproject" element={<NewProject/>} />
-        
+          <Route path="/perfil" element={<Perfil />} />
+          
         </Routes>
         <Footer/>
       </Router>

@@ -6401,7 +6401,7 @@ function Footer() {
     return(
         <footer>
                 
-           <p><span>Pictionary </span> &copy; 2024</p>       
+           <p><span>Games </span> &copy; 2024</p>       
         </footer>
     )
 }

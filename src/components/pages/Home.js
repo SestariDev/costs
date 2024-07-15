@@ -220,7 +220,7 @@ export const Game = (props) => {
     }, [correctAnswers]);
 
     return (
-        <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-full p-6 bg-gray-300'>
+        <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-[100vh] p-6 '>
             <div className='flex justify-between w-full'>
                 <img src={img} alt='Costs' className='s2:w-[200px] w-[100px]' />
                 <p className='text-lg font-extrabold text-black cursor-pointer' onClick={props.handleClose}>X</p>

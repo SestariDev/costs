@@ -14,6 +14,15 @@ function Home(props) {
     const [participants, setParticipants] = useState([]);
     const [newParticipant, setNewParticipant] = useState("");
 
+    useEffect(() => {
+        const savedParticipants = JSON.parse(localStorage.getItem('participants')) || [];
+        setParticipants(savedParticipants);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('participants', JSON.stringify(participants));
+    }, [participants]);
+
     const handleSave = () => {
         setTime(Number(tempTime));
     };
@@ -33,10 +42,14 @@ function Home(props) {
         setParticipants(participants.filter((_, index) => index !== indexToRemove));
     };
 
+    const handleResetScores = () => {
+        setParticipants(participants.map(participant => ({ ...participant, score: 0 })));
+    };
+
     return (
         <Container>
             <div className='flex items-center justify-center w-full gap-2 sX:justify-end'>
-                <img src={img} alt='Costs'className='w-[70%] s2:w-[200px] sX:h-[5%] h-[30%] '/>
+                <img src={img} alt='Costs' className='w-[70%] s2:w-[200px] sX:h-[5%] h-[30%]' />
             </div>
             
             <p>Tempo de jogo</p>
@@ -75,12 +88,14 @@ function Home(props) {
                 ))}
             </ul>
 
-           <div className='flex justify-center w-full '>
-            <button className='w-full ' onClick={handleStart} disabled={participants.length === 0}>
+            <div className='flex justify-center w-full '>
+                <button className='w-full ' onClick={handleStart} disabled={participants.length === 0}>
                     Iniciar Jogo
                 </button>
             </div>
             {participants.length === 0 && <p className='text-red-500'>Adicione participantes para iniciar o jogo</p>}
+            
+            <button className='p-2 mt-2 font-extrabold text-white bg-yellow-500 rounded' onClick={handleResetScores}>Resetar Pontuações</button>
 
             {show && <Game time={time} participants={participants} handleClose={() => setShow(false)} />}
         </Container>
@@ -189,6 +204,12 @@ export const Game = (props) => {
         selectRandomTheme();
     };
 
+    const handleEndGame = () => {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        props.handleClose();
+    };
+
     useEffect(() => {
         if (correctAnswers === 4) {
             setParticipants(participants.map(participant =>
@@ -202,11 +223,7 @@ export const Game = (props) => {
         <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-full p-6 bg-gray-300'>
             <div className='flex justify-between w-full'>
                 <img src={img} alt='Costs' className='s2:w-[200px] w-[100px]' />
-                <p className='text-lg font-extrabold text-black cursor-pointer' onClick={() => {
-                    props.handleClose();
-                    audioRef.current.pause();
-                    audioRef.current.currentTime = 0;
-                }}>X</p>
+                <p className='text-lg font-extrabold text-black cursor-pointer' onClick={props.handleClose}>X</p>
             </div>
             {allThemesUsed ? (
                 <div className='flex flex-col items-center justify-center h-full text-center'>
@@ -217,10 +234,11 @@ export const Game = (props) => {
                     <h1 className='mb-4 text-4xl text-black'>Pontuações</h1>
                     <ul className='mb-4 text-black'>
                         {participants.map((participant, index) => (
-                            <li key={index}>{participant.name}: {participant.score} pontos</li>
+                            <li key={index}>{participant.name} - {participant.score}</li>
                         ))}
                     </ul>
-                    <button className='p-2 font-extrabold text-white bg-green-900 rounded' onClick={handleNewRound}>Nova Rodada</button>
+                    <button className='p-2 mt-2 font-extrabold text-white bg-yellow-500 rounded' onClick={handleNewRound}>Nova Rodada</button>
+                    <button className='p-2 mt-2 font-extrabold text-white bg-red-900 rounded' onClick={handleEndGame}>Finalizar Jogo</button>
                 </div>
             ) : (
                 index === 0 ? (
@@ -247,6 +265,7 @@ export const Game = (props) => {
                                         </button>
                                     ))}
                                 </div>
+                                <button className='p-2 mt-4 text-black bg-yellow-500 rounded' onClick={selectRandomTheme}>Pular Categoria</button>
                             </div>
                         </div>
                     </div>

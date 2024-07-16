@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from '../nav/Container';
 import styles from './WheelOfFortuneGame.module.css'; // Arquivo CSS para estilos personalizados
 import { rodaThemes } from './WhellThemes';
+import { FiX } from 'react-icons/fi';
 
 const initialThemes = rodaThemes;
 
@@ -36,7 +37,8 @@ function WheelOfFortuneGame() {
     const [guess, setGuess] = useState(["", "", ""]);
     const [gameStarted, setGameStarted] = useState(false);
     const [availableThemes, setAvailableThemes] = useState([...initialThemes]);
-
+    const [zoom, setZoom] = useState(false);
+    
     useEffect(() => {
         if (theme) {
             const filteredWords = theme.words.map(word => {
@@ -161,7 +163,10 @@ function WheelOfFortuneGame() {
     const handleGuessWords = () => {
         const participant = participants[currentParticipantIndex];
         const formattedGuess = guess.map(word => word.toUpperCase()).join('');
-        const correctAnswer = theme ? theme.words.join('') : '';
+        const correctAnswer = theme ? theme.words.join('').toUpperCase() : '';
+
+        console.log(formattedGuess);
+        console.log(correctAnswer)
 
         if (formattedGuess === correctAnswer && !isNaN(parseInt(wheelResult))) {
             let totalLettersHidden = 0;
@@ -176,12 +181,11 @@ function WheelOfFortuneGame() {
             setTimeout(nextTheme, 1000); // Troca de tema após 1 segundo
             setWheelResult(null);
             setGuess(["", "", ""]);
-        } else if (outcomes.includes(formattedGuess)) {
-            alert(`Rodada de ${participant} - Errado! Você perdeu todos os seus pontos.`);
-            setScores({ ...scores, [participant]: 0 });
+        } else if (countHiddenLetters() <= 3 && formattedGuess !== correctAnswer) {
+            alert(`Rodada de ${participant} - Errado! proximo participante.`);
             nextParticipant();
         } else {
-            alert(`Rodada de ${participant} - Errado! Você perdeu todos os seus pontos.`);
+            alert(`Rodada de ${participant} - Errado! Você perdeu todos os seus pontos. ${countHiddenLetters()}` );
             setScores({ ...scores, [participant]: 0 });
             nextParticipant();
         }
@@ -210,12 +214,13 @@ function WheelOfFortuneGame() {
                 <div className='flex flex-col game'>
                     <h1 className='mb-4 text-4xl font-bold text-center'>Roda Roda Jequiti</h1>
                     <div className='flex gap-3 mb-4'>
+                        
                         <input
                             type='text'
                             value={newParticipant}
                             onChange={(e) => setNewParticipant(e.target.value)}
                             placeholder='Nome do participante'
-                            className='px-4 mb-2 border border-gray-300 border-solid rounded-md py- focus:outline-none'
+                            className='w-full px-4 py-4 border border-gray-300 border-solid rounded-md py- focus:outline-none'
                         />
                         <button onClick={handleAddParticipant} className='px-4 py-1 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none'>
                             Adicionar
@@ -241,9 +246,19 @@ function WheelOfFortuneGame() {
                     <button onClick={handleStartGame} disabled={participants.length === 0 || availableThemes.length === 0} className='px-4 py-2 mb-2 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none'>
                         Iniciar Jogo
                     </button>
-                    <button onClick={() => setScores({})} className='px-4 py-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600 focus:outline-none'>
+                    <button
+                        onClick={() => {
+                            const resetScores = Object.keys(scores).reduce((acc, participant) => {
+                            acc[participant] = 0;
+                            return acc;
+                            }, {});
+                            setScores(resetScores);
+                        }}
+                        className='px-4 py-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600 focus:outline-none'
+                        >
                         Resetar Pontuações
-                    </button>
+                        </button>
+
                     {participants.length === 0 && (
                         <p className='mt-2 text-red-500'>Adicione participantes para iniciar o jogo</p>
                     )}
@@ -274,10 +289,15 @@ function WheelOfFortuneGame() {
                             ))}
                         </div>
                     )}
+
+                    {zoom &&
+                    <Table words={words} handleClose={() => setZoom(false)} theme={theme.theme} />
+                    }
+
                     {theme && (
                         <>  
                             <p className='w-full mt-4 font-bold text-center '> {theme.theme.toUpperCase()}</p>
-                            <div className='p-1 bg-blue-800 text-[30px]'>
+                            <div className='p-1 bg-blue-800 text-[30px] ' onClick={() => setZoom(true)}>
                                 <div className='p-2 border-solid border-[5px] border-white'>
                                     <div className='p-3 border-solid border-[2px] border-white flex flex-col gap-2'>
                                     {words.map((word, index) => (
@@ -334,21 +354,21 @@ function WheelOfFortuneGame() {
                                     value={guess[0]}
                                     onChange={(e) => setGuess([e.target.value.toUpperCase(), guess[1], guess[2]])}
                                     placeholder='Primeiro palpite'
-                                    className='px-4 py-2 border border-gray-300 border-solid rounded-md focus:outline-none'
+                                    className='px-4 py-2 border border-gray-300 border-solid rounded-md focus:outline-none mobile:w-full'
                                 />
                                 <input
                                     type='text'
                                     value={guess[1]}
                                     onChange={(e) => setGuess([guess[0], e.target.value.toUpperCase(), guess[2]])}
                                     placeholder='Segundo palpite'
-                                    className='px-4 py-2 border border-gray-300 border-solid rounded-md focus:outline-none'
+                                    className='px-4 py-2 border border-gray-300 border-solid rounded-md focus:outline-none mobile:w-full'
                                 />
                                 <input
                                     type='text'
                                     value={guess[2]}
                                     onChange={(e) => setGuess([guess[0], guess[1], e.target.value.toUpperCase()])}
                                     placeholder='Terceiro palpite'
-                                    className='px-4 py-2 border border-gray-300 border-solid rounded-md focus:outline-none'
+                                    className='px-4 py-2 border border-gray-300 border-solid rounded-md focus:outline-none mobile:w-full'
                                 />
                                 <button onClick={handleGuessWords} className='w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none'>
                                     Enviar Palpite
@@ -363,3 +383,36 @@ function WheelOfFortuneGame() {
 }
 
 export default WheelOfFortuneGame;
+
+
+export const Table = ({words, handleClose, theme}) => {
+    return(
+    <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full bg-gray-200'>
+                            <div onClick={handleClose} className='absolute top-0 mobile:bottom-0 right-0 text-black text-[32px] font-bold p-4'><FiX/></div>
+                            
+                            <div className='mobile:rotate-90 p-1 bg-blue-800 text-[30px] min-w-[50vh]'>
+                                <div className='p-2 border-solid border-[5px] border-white'>
+                                    <div className='p-3 border-solid border-[2px] border-white flex flex-col gap-2'>
+                                    <p className='w-full mt-4 font-bold text-center text-white '> {theme.toUpperCase()}</p>
+                                    {words.map((word, index) => (
+                                        <div key={index} className='flex justify-center gap-2'>
+                                            {word.split('').map((char, i) => (
+                                                <span key={i} className='flex items-center justify-center p-2 '
+                                                    style={{
+                                                        background: char === ' ' ? 'rgb(30, 64, 175)' : 'white',
+                                                        color: char === ' ' ? 'rgb(30, 64, 175)' : 'black',
+                                                        
+                                                    }}
+                                                >
+                                                    {char === ' ' ? '-' : char}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    ))}
+                                    </div>
+                                </div>
+                            </div>
+                           
+    </div>
+    )
+}

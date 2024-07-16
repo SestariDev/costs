@@ -55,24 +55,24 @@ function Home(props) {
             <p>Tempo de jogo</p>
             <div className='flex items-center justify-between w-full gap-2'>
                 <input 
-                    className='p-4'
+                    className='w-full p-4'
                     type='number' 
                     value={tempTime}
                     onChange={(e) => setTempTime(e.target.value)}
                 />
-                <button onClick={handleSave}>
+                <button className='px-4 py-4 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none' onClick={handleSave}>
                     Salvar
                 </button>
             </div>
             <div className='flex items-center justify-between w-full gap-2'>
                 <input 
-                    className='p-4'
+                    className='w-full p-4'
                     type='text' 
                     value={newParticipant}
                     onChange={(e) => setNewParticipant(e.target.value)}
                     placeholder="Nome do participante"
                 />
-                <button onClick={handleAddParticipant}>
+                <button onClick={handleAddParticipant} className='px-4 py-4 text-white bg-black rounded-md py- hover:bg-gray-700 focus:outline-none'>
                     Adicionar
                 </button>
             </div>
@@ -88,7 +88,7 @@ function Home(props) {
                 ))}
             </ul>
 
-            <div className='flex justify-center w-full '>
+            <div className='px-4 py-2 mb-2 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none'>
                 <button className='w-full ' onClick={handleStart} disabled={participants.length === 0}>
                     Iniciar Jogo
                 </button>
@@ -220,7 +220,7 @@ export const Game = (props) => {
     }, [correctAnswers]);
 
     return (
-        <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-[100vh] p-6 '>
+        <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-[100vh] p-6 bg-white'>
             <div className='flex justify-between w-full'>
                 <img src={img} alt='Costs' className='s2:w-[200px] w-[100px]' />
                 <p className='text-lg font-extrabold text-black cursor-pointer' onClick={props.handleClose}>X</p>

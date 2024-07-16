@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from '../nav/Container';
 import img from '../../img/perfil.png';
 import { perfis } from './Perfis';
+import { FiX } from 'react-icons/fi';
 
 const themes = perfis;
 
@@ -50,13 +51,13 @@ function Perfil(props) {
             
             <div className='flex items-center justify-between w-full gap-2'>
                 <input 
-                    className='p-4'
+                    className='w-full p-4'
                     type='text' 
                     value={newParticipant}
                     onChange={(e) => setNewParticipant(e.target.value)}
                     placeholder="Nome do participante"
                 />
-                <button onClick={handleAddParticipant}>
+                <button className='px-4 py-4 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none' onClick={handleAddParticipant}>
                     Adicionar
                 </button>
             </div>
@@ -134,8 +135,12 @@ const Game = ({ participants, setParticipants, handleEndGame }) => {
 
     return (
         <div className='fixed inset-0 flex flex-col items-center justify-start p-6 overflow-y-auto bg-gray-300'>
-            <div className='flex items-start justify-end w-full'>
-              
+            <div className='flex items-center justify-between w-full'>
+                <button
+                className='px-4 py-2 mt-5 text-white bg-green-900 rounded-md hover:bg-gray-700 focus:outline-none'
+                onClick={() => setShowScores(true)}>
+                    Ver pontuações
+                </button>
                 <button className='text-lg font-extrabold text-black bg-transparent cursor-pointer' onClick={handleEndGame}>x</button>
             </div>
             <div className='flex flex-col items-center mt-4'>
@@ -172,10 +177,18 @@ const Game = ({ participants, setParticipants, handleEndGame }) => {
                         {participant.name}
                     </button>
                 ))}
+                
             </div>
 
+            <button
+             onClick={handleNewRound}
+                className='px-4 py-2 mt-5 text-white bg-yellow-700 rounded-md hover:bg-gray-700 focus:outline-none'>
+                    Pular tema
+            </button>
+
             {showScores && (
-                <div className='flex flex-col items-center justify-start mt-4'>
+                <div className='absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full bg-white '>
+                     <div onClick={() => setShowScores(false)} className='absolute cursor-pointer top-0 right-0 text-black text-[32px] font-bold p-4'><FiX/></div>
                     <h3 className='mb-2 text-2xl font-bold'>Pontuações</h3>
                     <p className='text-lg text-black'>{winnerMessage}</p>
                     <ul className='pl-4 list-disc'>

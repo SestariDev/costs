@@ -1,309 +1,137 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Container from '../nav/Container';
-import img from '../../img/costs_logo.png';
-import { themes } from '../../contas';
-import NavBar from '../nav/NavBar';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { dieta } from './Dieta';
+import './styles.css'; 
 
-function Home(props) {
-    const [tempTime, setTempTime] = useState(60);
-    const [time, setTime] = useState(60);
-    const [show, setShow] = useState(false);
-    const [participants, setParticipants] = useState([]);
-    const [newParticipant, setNewParticipant] = useState("");
+function MealSelector() {
+  const [selectedMealIndex, setSelectedMealIndex] = useState(0);
+  const [selectedItems, setSelectedItems] = useState({});
+  const [totalCalories, setTotalCalories] = useState(0);
+  const [meals, setMeals] = useState([]);
+  const [userSelected, setUserSelected] = useState(null); // Controla o usuário selecionado
 
-    useEffect(() => {
-        const savedParticipants = JSON.parse(localStorage.getItem('participants')) || [];
-        setParticipants(savedParticipants);
-    }, []);
+  // Array de cores para as categorias
+  const categoryColors = {
+    'Salada': 'bg-green-600',       // Verde escuro para saladas
+    'Legumes': 'bg-orange-600',     // Laranja para legumes
+    'Proteína': 'bg-blue-700',      // Azul escuro para proteínas
+    'Carboidrato': 'bg-yellow-700', // Amarelo escuro para carboidratos
+    'Fruta': 'bg-red-500',          // Vermelho para frutas
+    'Opções': 'bg-purple-500',      // Roxo para opções
+    'Queijos': 'bg-yellow-600'      // Amarelo escuro para queijos
+  };
 
-    useEffect(() => {
-        localStorage.setItem('participants', JSON.stringify(participants));
-    }, [participants]);
-
-    const handleSave = () => {
-        setTime(Number(tempTime));
+  const handleSelect = (mealName, categoryName, option) => {
+    const newSelections = {
+      ...selectedItems,
+      [mealName]: {
+        ...selectedItems[mealName],
+        [categoryName]: option
+      }
     };
+    setSelectedItems(newSelections);
 
-    const handleStart = () => {
-        setShow(true);
-    };
+    // Calcular total de calorias
+    const newTotalCalories = Object.values(newSelections).reduce((total, meal) => {
+      return total + Object.values(meal).reduce((mealTotal, option) => {
+        return mealTotal + option.calorias;
+      }, 0);
+    }, 0);
 
-    const handleAddParticipant = () => {
-        if (newParticipant.trim() !== "") {
-            setParticipants([...participants, { name: newParticipant, score: 0 }]);
-            setNewParticipant("");
-        }
-    };
+    setTotalCalories(newTotalCalories);
+  };
 
-    const handleRemoveParticipant = (indexToRemove) => {
-        setParticipants(participants.filter((_, index) => index !== indexToRemove));
-    };
-
-    const handleResetScores = () => {
-        setParticipants(participants.map(participant => ({ ...participant, score: 0 })));
-    };
-
-    return (
-        <Container>
-            <div className='flex items-center justify-center w-full gap-2 sX:justify-end'>
-                <img src={img} alt='Costs' className='w-[70%] s2:w-[200px] sX:h-[5%] h-[30%]' />
-            </div>
-            
-            <p>Tempo de jogo</p>
-            <div className='flex items-center justify-between w-full gap-2'>
-                <input 
-                    className='w-full p-4'
-                    type='number' 
-                    value={tempTime}
-                    onChange={(e) => setTempTime(e.target.value)}
-                />
-                <button className='px-4 py-4 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none' onClick={handleSave}>
-                    Salvar
-                </button>
-            </div>
-            <div className='flex items-center justify-between w-full gap-2'>
-                <input 
-                    className='w-full p-4'
-                    type='text' 
-                    value={newParticipant}
-                    onChange={(e) => setNewParticipant(e.target.value)}
-                    placeholder="Nome do participante"
-                />
-                <button onClick={handleAddParticipant} className='px-4 py-4 text-white bg-black rounded-md py- hover:bg-gray-700 focus:outline-none'>
-                    Adicionar
-                </button>
-            </div>
-            
-            <ul>
-                {participants.map((participant, index) => (
-                    <li key={index} className='flex justify-between text-[18px] pl-2'>
-                        {participant.name} -  {participant.score}
-                        <div 
-                        onClick={() => handleRemoveParticipant(index)} 
-                        className='ml-2 font-extrabold text-red-500'>X</div>
-                    </li>
-                ))}
-            </ul>
-
-            <div className='px-4 py-2 mb-2 text-white bg-black rounded-md hover:bg-gray-700 focus:outline-none'>
-                <button className='w-full ' onClick={handleStart} disabled={participants.length === 0}>
-                    Iniciar Jogo
-                </button>
-            </div>
-            {participants.length === 0 && <p className='text-red-500'>Adicione participantes para iniciar o jogo</p>}
-            
-            <button className='p-2 mt-2 font-extrabold text-white bg-yellow-500 rounded' onClick={handleResetScores}>Resetar Pontuações</button>
-
-            {show && <Game time={time} participants={participants} handleClose={() => setShow(false)} />}
-        </Container>
+  const handlePrevMeal = () => {
+    setSelectedMealIndex((prevIndex) =>
+      prevIndex === 0 ? meals.length - 1 : prevIndex - 1
     );
+  };
+
+  const handleNextMeal = () => {
+    setSelectedMealIndex((prevIndex) =>
+      prevIndex === meals.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handleUserSelection = (user) => {
+    if (user === 'Gui') {
+      setMeals(dieta.refeicoes); // Se "Gui" for selecionado
+    } else {
+      setMeals([]); // Se "Nay" for selecionado
+    }
+    setUserSelected(user); // Define o usuário selecionado
+    setSelectedMealIndex(0); // Reinicia o índice da refeição
+    setSelectedItems({}); // Limpa os itens selecionados
+    setTotalCalories(0); // Reinicia as calorias
+  };
+
+  const selectedMeal = meals[selectedMealIndex] || {};
+
+  // Se nenhum usuário estiver selecionado, exibe os botões de seleção
+  if (!userSelected) {
+    return (
+      <div className="flex items-center justify-center w-full h-screen bg-gray-100">
+        <div className="flex gap-4">
+          <button 
+            className="p-4 text-2xl text-white bg-blue-500 rounded-lg"
+            onClick={() => handleUserSelection('Gui')}
+          >
+            Gui
+          </button>
+          <button 
+            className="p-4 text-2xl text-white bg-green-500 rounded-lg"
+            onClick={() => handleUserSelection('Nay')}
+          >
+            Nay
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-screen meal-selector-container">
+      <div className='flex justify-between'>
+        <p className="title">Dietinx</p>
+        <p className='font-bold text-transparent'>{totalCalories} kcal</p>
+      </div>
+      <p className='fixed px-4 font-bold bg-white top-4 right-4'>{totalCalories} kcal</p>
+      {meals.length > 0 && (
+        <div className="meal-selection">
+          <div className="meal-details">
+            <div className='flex items-center justify-between'>
+              <button className="arrow-button" onClick={handlePrevMeal}>
+                &lt;
+              </button>
+              <h2 className="meal-name">{selectedMeal.nome} - {selectedMeal.horario}</h2>
+              <button className="arrow-button" onClick={handleNextMeal}>
+                &gt;
+              </button>
+            </div>
+            {selectedMeal.categorias && selectedMeal.categorias.map((category, index) => (
+              <div key={category.nome} className="shadow-lg category-section">
+                <h3 className={`font-bold text-white rounded-lg category-title ${categoryColors[category.nome] || 'bg-gray-500'}`}>
+                  {category.nome}
+                </h3>
+                {category.opcoes.map((option) => {
+                  const isSelected = selectedItems[selectedMeal.nome]?.[category.nome]?.nome === option.nome;
+                  return (
+                    <button
+                      key={option.nome}
+                      className={`flex flex-col option-button ${isSelected ? 'selected' : ''}`}
+                      onClick={() => handleSelect(selectedMeal.nome, category.nome, option)}
+                    >
+                      <p className='font-bold'>{option.nome}</p>
+                      <p className='text-xs'>{option.porcao} ({option.peso} g) ({option.calorias} kcal)</p>
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export const Game = (props) => {
-    const [index, setIndex] = useState(0);
-    const [selectedTheme, setSelectedTheme] = useState(null);
-    const [timeLeft, setTimeLeft] = useState(props.time);
-    const [timerRunning, setTimerRunning] = useState(false);
-    const [participants, setParticipants] = useState(props.participants);
-    const [drawer, setDrawer] = useState(null);
-    const [showScore, setShowScore] = useState(false);
-    const [usedThemes, setUsedThemes] = useState([]);
-    const [allThemesUsed, setAllThemesUsed] = useState(false);
-    const [allPicsAnswered, setAllPicsAnswered] = useState(false);
-    const [correctAnswers, setCorrectAnswers] = useState(0);
-    const [showWord, setShowWord] = useState(true);
-
-    const audioRef = useRef(new Audio('acabou.mp3'));
-
-    useEffect(() => {
-        selectRandomTheme();
-    }, []);
-
-    useEffect(() => {
-        if (timerRunning && timeLeft > 0) {
-            const timer = setTimeout(() => {
-                setTimeLeft(timeLeft - 1);
-            }, 1000);
-            return () => clearTimeout(timer);
-        } else if (timeLeft === 0) {
-            audioRef.current.play();
-            setTimerRunning(false);
-            setShowScore(true);
-        }
-    }, [timerRunning, timeLeft]);
-
-    useEffect(() => {
-        if (index > 0) {
-            setShowWord(true);
-            const timer = setTimeout(() => {
-                setShowWord(false);
-            }, 2000);
-            return () => clearTimeout(timer);
-        }
-    }, [index]);
-
-    const selectRandomTheme = () => {
-        const themeKeys = Object.keys(themes).filter(key => !usedThemes.includes(key));
-        if (themeKeys.length === 0) {
-            setAllThemesUsed(true);
-            return;
-        }
-        const randomThemeKey = themeKeys[Math.floor(Math.random() * themeKeys.length)];
-        setSelectedTheme(themes[randomThemeKey]);
-        setUsedThemes([...usedThemes, randomThemeKey]);
-    };
-
-    const handleNextPick = () => {
-        if (index < selectedTheme.pics.length) {
-            setIndex(index + 1);
-        } else {
-            setAllPicsAnswered(true);
-            setShowScore(true);
-            setTimerRunning(false);
-        }
-
-        if (!timerRunning) {
-            setTimerRunning(true);
-        }
-    };
-
-    const handleParticipantClick = (participantName) => {
-        setParticipants(participants.map(participant =>
-            participant.name === participantName ? { ...participant, score: participant.score + 1 } : participant
-        ));
-        setCorrectAnswers(prevCorrectAnswers => prevCorrectAnswers + 1);
-
-        handleNextPick();
-    };
-
-    const handleSkip = () => {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-        handleNextPick();
-    };
-
-    const handleDrawerSelection = (participantName) => {
-        setDrawer(participantName);
-        setIndex(1);
-        setCorrectAnswers(0);
-        setTimerRunning(true);
-    };
-
-    const handleNewRound = () => {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-        setIndex(0);
-        setTimeLeft(props.time);
-        setTimerRunning(false);
-        setShowScore(false);
-        setAllPicsAnswered(false);
-        setCorrectAnswers(0);
-        selectRandomTheme();
-    };
-
-    const handleEndGame = () => {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-        props.handleClose();
-    };
-
-    useEffect(() => {
-        if (correctAnswers === 4) {
-            setParticipants(participants.map(participant =>
-                participant.name === drawer ? { ...participant, score: participant.score + 1 } : participant
-            ));
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [correctAnswers]);
-
-    return (
-        <div className='absolute top-0 left-0 flex flex-col justify-start w-full h-[100vh] p-6 bg-white'>
-            <div className='flex justify-between w-full'>
-                <img src={img} alt='Costs' className='s2:w-[200px] w-[100px]' />
-                <p className='text-lg font-extrabold text-black cursor-pointer' onClick={props.handleClose}>X</p>
-            </div>
-            {allThemesUsed ? (
-                <div className='flex flex-col items-center justify-center h-full text-center'>
-                    <h1 className='mb-4 text-4xl text-black'>Ihh desculpe, não pensei em todos os temas</h1>
-                </div>
-            ) : showScore ? (
-                <div className='flex flex-col items-center justify-center h-full text-center'>
-                    <h1 className='mb-4 text-4xl text-black'>Pontuações</h1>
-                    <ul className='mb-4 text-black'>
-                        {participants.map((participant, index) => (
-                            <li key={index}>{participant.name} - {participant.score}</li>
-                        ))}
-                    </ul>
-                    <button className='p-2 mt-2 font-extrabold text-white bg-yellow-500 rounded' onClick={handleNewRound}>Nova Rodada</button>
-                    <button className='p-2 mt-2 font-extrabold text-white bg-red-900 rounded' onClick={handleEndGame}>Finalizar Jogo</button>
-                </div>
-            ) : (
-                index === 0 ? (
-                    <div className='flex flex-col items-center justify-center h-full text-center'>
-                        <div style={{ width: 100, height: 100, marginBottom: 20 }}>
-                            <CircularProgressbar
-                                value={(timeLeft / props.time) * 100}
-                                text={`${timeLeft}s`}
-                                styles={buildStyles({
-                                    textColor: 'black',
-                                    pathColor: 'green',
-                                    trailColor: 'gray'
-                                })}
-                            />
-                        </div>
-                        <div className='w-full'>
-                            <h1 className='mb-4 text-4xl text-black min-w-8'>{selectedTheme?.theme}</h1>
-                            <div>
-                                <p className='mb-2 text-black min-w-8'>Selecione o desenhista:</p>
-                                <div className='flex flex-wrap justify-center gap-2'>
-                                    {participants.map((participant, index) => (
-                                        <button key={index} className='p-2 font-bold text-white bg-black rounded min-w-8' onClick={() => handleDrawerSelection(participant.name)}>
-                                            {participant.name}
-                                        </button>
-                                    ))}
-                                </div>
-                                <button className='p-2 mt-4 text-black bg-yellow-500 rounded' onClick={selectRandomTheme}>Pular Categoria</button>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className='flex flex-col items-center justify-center h-full text-center'>
-                        <div style={{ width: 100, height: 100, marginBottom: 20 }}>
-                            <CircularProgressbar
-                                value={(timeLeft / props.time) * 100}
-                                text={`${timeLeft}s`}
-                                styles={buildStyles({
-                                    textColor: 'black',
-                                    pathColor: 'green',
-                                    trailColor: 'gray'
-                                })}
-                            />
-                        </div>
-                        <div className='flex items-center gap-3 mb-4 text-4xl text-black'>
-                            {showWord ? selectedTheme?.pics[index-1] : '-----'}
-                            {showWord ? (
-                                <FiEyeOff onClick={() => setShowWord(false)} className='cursor-pointer' />
-                            ) : (
-                                <FiEye onClick={() => setShowWord(true)} className='cursor-pointer' />
-                            )}
-                        </div>
-                        <p className='mb-2 text-black min-w-8'>Quem acertou?:</p>
-                        <div className='flex flex-wrap justify-center gap-2 mb-4'>
-                            {participants.filter(participant => participant.name !== drawer).map((participant, index) => (
-                                <button key={index} className='p-2 text-white bg-black rounded' onClick={() => handleParticipantClick(participant.name)}>
-                                    {participant.name}
-                                </button>
-                            ))}
-                        </div>
-                        <button className='p-2 text-black bg-yellow-500 rounded' onClick={handleSkip}>Pular Desenho</button>
-                    </div>
-                )
-            )}
-        </div>
-    );
-};
-
-export default Home;
+export default MealSelector;

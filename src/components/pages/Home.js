@@ -16,6 +16,7 @@ function MealSelector() {
   const categoryColors = {
     'Salada': 'bg-green-600',       // Verde escuro para saladas
     'Legumes': 'bg-orange-600',     // Laranja para legumes
+    'Vegetais': 'bg-orange-600',     // Laranja para legumes
     'Proteína': 'bg-blue-700',      // Azul escuro para proteínas
     'Carboidrato': 'bg-yellow-700', // Amarelo escuro para carboidratos
     'Fruta': 'bg-red-500',          // Vermelho para frutas

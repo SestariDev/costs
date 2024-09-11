@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { dieta } from './Dieta';
 import './styles.css'; 
+import { FiArrowLeft } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { dietaNay } from './DietaNay';
 
 function MealSelector() {
   const [selectedMealIndex, setSelectedMealIndex] = useState(0);
@@ -17,7 +20,8 @@ function MealSelector() {
     'Carboidrato': 'bg-yellow-700', // Amarelo escuro para carboidratos
     'Fruta': 'bg-red-500',          // Vermelho para frutas
     'Opções': 'bg-purple-500',      // Roxo para opções
-    'Queijos': 'bg-yellow-600'      // Amarelo escuro para queijos
+    'Queijos': 'bg-yellow-600',     // Amarelo escuro para queijos
+    'Grão': 'bg-[#4E3A1C]'
   };
 
   const handleSelect = (mealName, categoryName, option) => {
@@ -56,7 +60,7 @@ function MealSelector() {
     if (user === 'Gui') {
       setMeals(dieta.refeicoes); // Se "Gui" for selecionado
     } else {
-      setMeals([]); // Se "Nay" for selecionado
+      setMeals(dietaNay.refeicoes); // Se "Nay" for selecionado
     }
     setUserSelected(user); // Define o usuário selecionado
     setSelectedMealIndex(0); // Reinicia o índice da refeição
@@ -64,12 +68,13 @@ function MealSelector() {
     setTotalCalories(0); // Reinicia as calorias
   };
 
+
   const selectedMeal = meals[selectedMealIndex] || {};
 
   // Se nenhum usuário estiver selecionado, exibe os botões de seleção
   if (!userSelected) {
     return (
-      <div className="flex items-center justify-center w-full h-screen bg-gray-100">
+      <div className="flex items-center justify-center w-full h-screen bg-gray-100 ">
         <div className="flex gap-4">
           <button 
             className="p-4 text-2xl text-white bg-blue-500 rounded-lg"
@@ -88,10 +93,14 @@ function MealSelector() {
     );
   }
 
+ 
   return (
     <div className="h-screen meal-selector-container">
-      <div className='flex justify-between'>
-        <p className="title">Dietinx</p>
+      <div className='flex items-center justify-between pb-4 '>
+        <FiArrowLeft size={25} className='cursor-pointer' onClick={() => {
+          setUserSelected(null);
+        }}/>
+        <p className="flex items-center title">Dietinx</p>
         <p className='font-bold text-transparent'>{totalCalories} kcal</p>
       </div>
       <p className='fixed px-4 font-bold bg-white top-4 right-4'>{totalCalories} kcal</p>
